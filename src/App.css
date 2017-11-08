@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.App.container {
+  background-color: aliceblue;
+  margin-top: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-shadow: 2px 2px 15px #888;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;

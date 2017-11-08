@@ -40,7 +40,7 @@ class Calendar extends Component {
           {this.props.namedDays.map((day, ind) => {
             return (
               <div className="col day-header-col" key={ind}>
-                {day}
+                <p className="lead">{day}</p>
               </div>
             )
           })}

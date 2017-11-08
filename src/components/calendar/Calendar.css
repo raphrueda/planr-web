@@ -1,11 +1,11 @@
 .calendar-container {
   margin-top: 2rem;
-  background-color: honeydew;
-  border: 1px solid darkseagreen;
+  background-color: #fff;
+  border: 1px solid lightslategray;
 }
 
 .col.day-header-col {
-  border-right: 1px solid darkseagreen;
+  border-right: 1px solid lightslategray;
 }
 
 .col.day-header-col:last-child {
@@ -14,5 +14,5 @@
 
 .row.week-row {
   height: 100px;
-  border-top: 1px solid darkseagreen;
+  border-top: 1px solid lightslategray;
 }
