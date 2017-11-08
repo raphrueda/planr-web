@@ -1,0 +1,15 @@
+.col.calendar-day {
+  border-right: 1px solid darkseagreen;
+  position: relative;
+}
+
+.col.calendar-day p {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 1rem;
+}
+
+.col.calendar-day:last-child {
+  border-right: none;
+}

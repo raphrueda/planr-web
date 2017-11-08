@@ -9,8 +9,8 @@ class Day extends Component {
 
   render(){
     return(
-      <div className="col calender-day">
-        {this.props.date}
+      <div className="col calendar-day">
+        <p>{this.props.date}</p>
       </div>
     )
   }
