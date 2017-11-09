@@ -1,13 +1,19 @@
 .col.calendar-day {
   border-right: 1px solid lightslategray;
+  padding: 0px;
   position: relative;
 }
 
-.col.calendar-day p {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 1rem;
+.col.calendar-day .day-label {
+  height: 20%;
+}
+
+.col.calendar-day .day-label p {
+  height: 100%;
+  margin-right: .5rem;
+  margin-bottom: 0;
+  font-size: 12px;
+  text-align: right;
 }
 
 .col.calendar-day:last-child {
@@ -16,6 +22,14 @@
 
 .col.calendar-day.selected-day {
   background-color: darkseagreen;
+}
+
+.col.calendar-day .event-slots {
+  height: 80%;
+}
+
+.col.calendar-day .event-slots .event-slot {
+  height: 50%;
 }
 
 .col.calendar-day.other-month {
