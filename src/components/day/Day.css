@@ -13,3 +13,15 @@
 .col.calendar-day:last-child {
   border-right: none;
 }
+
+.col.calendar-day.selected-day {
+  background-color: darkseagreen;
+}
+
+.col.calendar-day.other-month {
+  background-color: lightgray;
+}
+
+.col.calendar-day.other-month.selected-day {
+  background-color: gray;
+}

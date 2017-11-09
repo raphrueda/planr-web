@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import Day from '../day/Day';
 import './Calendar.css';
+import date from 'date-and-time';
+
+const CAL_ROWS = 6;
+const CAL_COLS = 7;
 
 class Calendar extends Component {
   constructor(props) {
@@ -15,25 +19,46 @@ class Calendar extends Component {
       month: today.getMonth(),
       year: today.getYear()
     };
+
+    // Binding functions
+    this.onDaySelect = this.onDaySelect.bind(this);
+  }
+
+  onDaySelect(e) {
+    this.setState(state => ({
+      selectedDay: (e === this.state.selectedDay) ? undefined : e
+    }));
   }
 
   render() {
-    let firstWeek = [];
-    let prevMonth = (this.state.today.month - 1) % this.props.months;
-    let prevMonthYear = (prevMonth === (this.props.months - 1))
-      ? this.state.today.year - 1 : this.state.today.year;
-    let lastMonthLastDay = new Date(prevMonthYear, prevMonth + 1, 0).getDate();
-    let startInactive = lastMonthLastDay - this.state.today.day;
-    for (let i = 1; i <= this.state.today.day; i++) {
-      firstWeek.push(<Day date={startInactive + i}/>);
+    let calMonthItr = new Date(this.state.today.year + 1900, this.state.today.month, 1);
+
+    // If month starts on a non sunday, need to start calendar at end of previous month
+    const startDay = calMonthItr.getDay();
+    calMonthItr = (startDay === 0) ? calMonthItr : date.addDays(calMonthItr, -startDay);
+
+    let weeks = [];
+    for (let i = 0; i < CAL_ROWS; i ++) {
+      let newRow = [];
+      for (let j = 0; j < CAL_COLS; j ++) {
+          newRow.push(
+            <Day
+              key={(i*CAL_COLS) + j}
+              id={(i*CAL_COLS) + j}
+              selectedDay={((i*CAL_COLS) + j) === this.state.selectedDay}
+              currMonth={calMonthItr.getMonth() === this.state.today.month}
+              date={calMonthItr.getDate()}
+              handler={this.onDaySelect}/>
+          );
+          calMonthItr = date.addDays(calMonthItr, 1);
+      }
+      weeks.push(
+        <div id={i} className="row week-row">
+          {newRow}
+        </div>
+      );
     }
-    for (let i = 1; i + this.state.today.day <= this.props.days; i++) {
-      firstWeek.push(<Day date={i}/>);
-    }
-    let weekRows = [];
-    for (let i = 0; i < this.props.weeks; i++) {
-      weekRows.push(<div className="row week-row" key={i}></div>);
-    }
+
     return (
       <div className="calendar-container container">
         <div className="row">
@@ -45,10 +70,7 @@ class Calendar extends Component {
             )
           })}
         </div>
-        <div className="row week-row" key="a">
-          {firstWeek}
-        </div>
-        {weekRows}
+        {weeks}
       </div>
     );
   }
