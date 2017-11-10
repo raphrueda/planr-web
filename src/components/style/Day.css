@@ -1,3 +1,7 @@
+.col.day-header-col p {
+  margin-bottom: 0px;
+}
+
 .col.calendar-day {
   border-right: 1px solid lightslategray;
   padding: 0px;
